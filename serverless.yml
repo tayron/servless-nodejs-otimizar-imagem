@@ -1,10 +1,8 @@
-service: tayron-recurso-imagem
-
-frameworkVersion: '2'
+service: nodeless # NOTE: update this with your service name
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs10.x
   region: sa-east-1
   memorySize: 256
   iamRoleStatements:
@@ -13,24 +11,23 @@ provider:
         - s3:GetObject
         - s3:PutObject
       Resource:
-        - "arn:aws:s3:::*" # - "arn:aws:s3:::bucketname/uploadfoldername/*"
+        - "arn:aws:s3:::*"
 
 functions:
   optimize:
     handler: optimize.handle
-    enviroment:
-      bucket: tayronservelessbucketotimizarimagem
+    environment:
+      bucket: hospedaappuploadimagenodeserverless
     events:
       - s3:
-          bucket: tayronservelessbucketotimizarimagem
+          bucket: hospedaappuploadimagenodeserverless
           event: s3:ObjectCreated:*
           rules:
             - prefix: uploads/
             - suffix: .jpg
       - s3:
-          bucket: tayronservelessbucketotimizarimagem
+          bucket: hospedaappuploadimagenodeserverless
           event: s3:ObjectCreated:*
           rules:
             - prefix: uploads/
-            - suffix: .png            
-
+            - suffix: .png

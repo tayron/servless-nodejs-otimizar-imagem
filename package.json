@@ -1,0 +1,26 @@
+{
+  "name": "servless-nodejs-otimizar-imagem",
+  "version": "1.0.0",
+  "description": "Serviço servless para otimização de tamanho de imagem na amazon utilizando Framework Serverless",
+  "main": "optimize.js",
+  "dependencies": {
+    "sharp": "^0.26.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "predeploy": "rm -rf node_modules/sharp && npm install --platform=linux --arch=x64 --target=12.0.0 sharp",
+    "deploy": "serverless deploy -v",
+    "postdeploy": "rm -rf node_modules/sharp && npm install sharp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tayron/servless-nodejs-otimizar-imagem.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tayron/servless-nodejs-otimizar-imagem/issues"
+  },
+  "homepage": "https://github.com/tayron/servless-nodejs-otimizar-imagem#readme"
+}
